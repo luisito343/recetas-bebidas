@@ -71,13 +71,10 @@ src/
   types/        # Tipos TypeScript
 ```
 
-## 🛠️ Próximos pasos sugeridos
+## 🛠️ Próximos pasos
 
 - Completar gestión de favoritos (agregar, quitar, persistir).
-- Mejorar validaciones y manejo de errores en UI.
-- Agregar tests de componentes y store.
-- Pulir textos/estilos y limpiar logs de consola para producción.
 
 ## 👨‍💻 Autor
-
+- Luis Nava
 Proyecto de práctica en desarrollo.
