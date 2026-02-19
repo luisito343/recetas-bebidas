@@ -43,6 +43,14 @@ export default function Header() {
                     >
                         Favoritos
                     </NavLink>
+                    <NavLink
+                        to="generate-ai"
+                        className={({ isActive }) =>
+                            isActive ? 'text-yellow-300 font-bold uppercase' : 'text-white hover:text-yellow-200 font-bold uppercase transition-colors'
+                        }
+                    >
+                        Generar con IA
+                    </NavLink>
                 </nav>
             </div>
             {isHome && <DrinksForm />}

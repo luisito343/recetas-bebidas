@@ -1,33 +1,29 @@
 # 🍹 Recetas de Bebidas
 
-Aplicación web hecha con React para buscar recetas de bebidas usando la API de [TheCocktailDB](https://www.thecocktaildb.com/).
+Aplicación web hecha con React para buscar recetas de bebidas con [TheCocktailDB](https://www.thecocktaildb.com/) y generar recetas con IA usando OpenRouter.
 
-## ⚠️ Estado del proyecto
-
-Este proyecto está en desarrollo activo. Actualmente permite:
+## ✅ Funcionalidades actuales
 
 - Buscar bebidas por ingrediente y categoría.
 - Ver resultados en tarjetas.
-- Abrir un modal con detalles e instrucciones de cada bebida.
-- Agregar y quitar bebidas de favoritos.
-- Ver la página de favoritos con las bebidas guardadas.
+- Abrir modal con detalles e instrucciones.
+- Guardar y quitar favoritos.
 - Persistir favoritos en `localStorage`.
-- Mostrar notificaciones globales de éxito/error.
-
-Pendiente:
-
-- Mejoras visuales y nuevos flujos de UX.
+- Mostrar notificaciones globales.
+- Generar recetas de bebidas con IA en tiempo real (streaming).
+- Copiar la receta generada al portapapeles.
 
 ## 🚀 Tecnologías
 
 - React 19 + TypeScript
 - Vite
 - Tailwind CSS
-- Zustand (estado global)
+- Zustand
 - React Router
 - Axios
-- Zod (validación de respuestas)
-- Headless UI (modal)
+- Zod
+- Headless UI
+- AI SDK (`ai`) + OpenRouter (`@openrouter/ai-sdk-provider`)
 
 ## 📦 Instalación
 
@@ -38,7 +34,11 @@ Pendiente:
 pnpm install
 ```
 
-> También puedes usar `npm install` o `yarn` si prefieres.
+3. Crea un archivo `.env` en la raíz del proyecto con tu API key:
+
+```bash
+VITE_OPEN_ROUTER_API_KEY=tu_api_key_aqui
+```
 
 ## ▶️ Scripts disponibles
 
@@ -49,35 +49,26 @@ pnpm preview  # Previsualiza la build
 pnpm lint     # Ejecuta ESLint
 ```
 
-## 🧭 Rutas actuales
+## 🧭 Rutas
 
-- `/` → pantalla principal con formulario y resultados.
-- `/favorites` → vista de bebidas favoritas guardadas.
+- `/` → buscador de bebidas.
+- `/favorites` → bebidas favoritas guardadas.
+- `/generate-ai` → generador de recetas con IA.
 
-## 🔌 API utilizada
+## 🔌 APIs / servicios
 
-Se consume TheCocktailDB:
+### TheCocktailDB
 
 - `GET /list.php?c=list` → categorías
-- `GET /filter.php?i={ingredient}&c={category}` → búsqueda de bebidas
-- `GET /lookup.php?i={id}` → detalle de receta
+- `GET /filter.php?i={ingredient}&c={category}` → búsqueda
+- `GET /lookup.php?i={id}` → detalle
 
-## 📁 Estructura principal
+### OpenRouter
 
-```txt
-src/
-  components/   # UI reutilizable (Header, Form, Modal, Card, Notification...)
-  pages/        # Vistas por ruta
-  services/     # Llamadas HTTP a la API
-  stores/       # Estado global con Zustand (recetas, favoritos, notificaciones)
-  utils/        # Schemas de validación
-  types/        # Tipos TypeScript
-```
+- Se usa para generar recetas desde prompts del usuario.
+- Configuración en `src/lib/ai.ts` mediante `VITE_OPEN_ROUTER_API_KEY`.
 
-## 🛠️ Próximos pasos
-
-- Añadir mejoras adicionales de UX y nuevas funcionalidades con recomendaciondes por IA.
 
 ## 👨‍💻 Autor
+
 - Luis Nava
-Proyecto de práctica en desarrollo.
