@@ -1,7 +1,14 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router";
 import { IndexLayout } from "./components/IndexLayout";
-import { HomePage } from "./pages/HomePage";
-import { Favorites } from "./pages/Favorites";
+
+const HomePage = lazy(() =>
+    import("./pages/HomePage").then((module) => ({ default: module.HomePage }))
+);
+
+const Favorites = lazy(() =>
+    import("./pages/Favorites").then((module) => ({ default: module.Favorites }))
+);
 
 const AppRouter = createBrowserRouter([
     //Main route
@@ -11,11 +18,19 @@ const AppRouter = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <HomePage />
+                element: (
+                    <Suspense fallback={<p className="text-center py-10">Cargando página...</p>}>
+                        <HomePage />
+                    </Suspense>
+                )
             },
             {
                 path: 'favorites',
-                element: <Favorites />
+                element: (
+                    <Suspense fallback={<p className="text-center py-10">Cargando página...</p>}>
+                        <Favorites />
+                    </Suspense>
+                )
             }
         ]
     }

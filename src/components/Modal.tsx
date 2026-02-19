@@ -1,5 +1,5 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { useAppStore } from '../stores/useAppStore';
 
 export default function Modal() {
@@ -7,6 +7,13 @@ export default function Modal() {
     const modal = useAppStore((state) => state.modal);
     const closeModal = useAppStore((state) => state.closeModal);
     const selectedRecipe = useAppStore((state) => state.selectedRecipe);
+    const handleClickFavorite = useAppStore((state) => state.handleClickFavorite);
+    const favorites = useAppStore((state) => state.favorites);
+    const showNotification = useAppStore((state) => state.showNotification); 
+
+    const isFavorite = useMemo(() => {
+        return favorites.some(fav => fav.idDrink === selectedRecipe.idDrink);
+    }, [favorites, selectedRecipe]);
 
     const renderIngredients = () => {
         const ingredients = [];
@@ -85,7 +92,18 @@ export default function Modal() {
 
                                     <button
                                         className='w-full p-3 bg-orange-400 hover:bg-orange-500 text-white font-bold uppercase rounded-lg'
-                                    >Favoritos</button>
+                                        onClick={() => {
+                                            handleClickFavorite(selectedRecipe);
+                                            if(isFavorite) {
+                                                showNotification('Receta eliminada de favoritos', true);
+                                            } else {
+                                                showNotification('Receta agregada a favoritos');
+                                            }
+                                        }}
+                                        
+                                    >{
+                                        isFavorite ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'
+                                    }</button>
                                 </div>
 
                             </DialogPanel>

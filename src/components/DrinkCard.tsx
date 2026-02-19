@@ -27,13 +27,6 @@ export const DrinkCard = ({ drink }: DrinkCardProps) => {
                 >
                     Ver Receta
                 </button>
-                {/* Botón de Favoritos */}
-                <button
-                    type="button"
-                    className="mt-2 w-full p-3 font-bold text-orange-500 border-2 border-orange-500 uppercase rounded-lg hover:bg-orange-50"
-                >
-                    Agregar a Favoritos
-                </button>
             </div>
         </div>
     )

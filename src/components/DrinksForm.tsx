@@ -6,6 +6,7 @@ export const DrinksForm = () => {
     const fetchCategories = useAppStore((state) => state.fetchCategories);
     const categories = useAppStore((state) => state.catgeories);
     const searchRecipies = useAppStore((state) => state.searchRecipies);
+    const showNotification = useAppStore((state) => state.showNotification);
 
     useEffect(() => {
         fetchCategories();
@@ -21,7 +22,7 @@ export const DrinksForm = () => {
         e.preventDefault();
 
         if(Object.values(searchTerm).some(value => value.trim() === "")) {
-            alert("Por favor, complete todos los campos antes de buscar.");
+            showNotification('Por favor, completa los campos de búsqueda', true);
             return;
         }
 

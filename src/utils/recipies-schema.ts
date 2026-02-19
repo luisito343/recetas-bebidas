@@ -49,3 +49,5 @@ export const DrinksAPIResponseSchema = z.object({
     drinks: z.array(RecipeAPIResponseSchema)
 });
 
+export const FavoritesListSchema = z.array(RecipeAPIResponseSchema);
+
