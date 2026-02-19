@@ -23,7 +23,7 @@ export function GenerateAI() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="min-h-screen max-w-4xl mx-auto px-4 py-12">
             {/* Encabezado Mejorado */}
             <div className="text-center mb-10">
                 <h1 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight">
